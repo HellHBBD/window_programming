@@ -89,39 +89,33 @@ namespace H34111122_practice_2_2
             while (true)
             {
                 Console.Write(msg);
-                string[] line = Console.ReadLine().Split(' ');
+                string line = Console.ReadLine();
+                if (line.Equals("-1"))
+                {
+                    array[0] = -1;
+                    return array;
+                }
+                string[] temp = line.Split(' ');
+                if (temp.Length != count)
+                {
+                    Console.WriteLine("請輸入正確數量的正整數或-1來取消\n");
+                    continue;
+                }
                 try
                 {
-                    array[0] = int.Parse(line[0]);
-                    if (array[0] == -1 && line.Length == 1)
+                    for (int i = 0; i < count; i++)
                     {
-                        return array;
-                    }
-                    else if (array[0] <= 0)
-                    {
-                        throw new Exception();
-                    }
-                    else if (line.Length != count)
-                    {
-                        throw new Exception();
+                        array[i] = int.Parse(temp[i]);
+                        if (array[i] <= 0)
+                        {
+                            throw new Exception();
+                        }
                     }
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("請輸入正確數量的正整數或-1來取消\n");
                     continue;
-                }
-                for (int i = 1; i < count; i++)
-                {
-                    try
-                    {
-                        array[i] = int.Parse(line[i]);
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("請輸入正確數量的正整數或-1來取消\n");
-                        break;
-                    }
                 }
                 return array;
             }
