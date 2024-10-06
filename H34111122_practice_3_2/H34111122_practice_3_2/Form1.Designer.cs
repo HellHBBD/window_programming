@@ -28,211 +28,276 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        this.message = new System.Windows.Forms.TextBox();
-        this.button_open = new System.Windows.Forms.Button();
-        this.label_account = new System.Windows.Forms.Label();
-        this.label_password = new System.Windows.Forms.Label();
-        this.textBox_account = new System.Windows.Forms.TextBox();
-        this.textBox_password = new System.Windows.Forms.TextBox();
-        this.button_login = new System.Windows.Forms.Button();
-        this.button_add = new System.Windows.Forms.Button();
-        this.button_list = new System.Windows.Forms.Button();
-        this.listBox = new System.Windows.Forms.ListBox();
-        this.button_penguin = new System.Windows.Forms.Button();
-        this.button_pork = new System.Windows.Forms.Button();
-        this.button_shrimp = new System.Windows.Forms.Button();
-        this.button_submit = new System.Windows.Forms.Button();
-        this.label_amount = new System.Windows.Forms.Label();
-        this.textBox_amount = new System.Windows.Forms.TextBox();
-        this.SuspendLayout();
+        message = new TextBox();
+        button_open = new Button();
+        label_account = new Label();
+        label_password = new Label();
+        textBox_account = new TextBox();
+        textBox_password = new TextBox();
+        button_login = new Button();
+        button_add = new Button();
+        button_list = new Button();
+        listBox = new ListBox();
+        button_penguin = new Button();
+        button_pork = new Button();
+        button_shrimp = new Button();
+        button_submit = new Button();
+        label_amount = new Label();
+        textBox_amount = new TextBox();
+        button_new_account = new Button();
+        button_logout = new Button();
+        button_add_account = new Button();
+        button_cancel = new Button();
+        SuspendLayout();
         // 
         // message
         // 
-        this.message.Enabled = false;
-        this.message.Location = new System.Drawing.Point(183, 45);
-        this.message.Name = "message";
-        this.message.Size = new System.Drawing.Size(441, 25);
-        this.message.TabIndex = 0;
-        this.message.Text = "歡迎來到角落生物商店";
-        this.message.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        message.Enabled = false;
+        message.Location = new Point(206, 57);
+        message.Margin = new Padding(3, 4, 3, 4);
+        message.Name = "message";
+        message.Size = new Size(496, 27);
+        message.TabIndex = 0;
+        message.Text = "歡迎來到角落生物商店";
+        message.TextAlign = HorizontalAlignment.Center;
         // 
         // button_open
         // 
-        this.button_open.Location = new System.Drawing.Point(367, 209);
-        this.button_open.Name = "button_open";
-        this.button_open.Size = new System.Drawing.Size(75, 23);
-        this.button_open.TabIndex = 1;
-        this.button_open.Text = "開店";
-        this.button_open.UseVisualStyleBackColor = true;
-        this.button_open.Click += new System.EventHandler(this.button_open_Click);
+        button_open.Location = new Point(413, 265);
+        button_open.Margin = new Padding(3, 4, 3, 4);
+        button_open.Name = "button_open";
+        button_open.Size = new Size(84, 29);
+        button_open.TabIndex = 1;
+        button_open.Text = "開店";
+        button_open.UseVisualStyleBackColor = true;
+        button_open.Click += button_open_Click;
         // 
         // label_account
         // 
-        this.label_account.AutoSize = true;
-        this.label_account.Location = new System.Drawing.Point(243, 155);
-        this.label_account.Name = "label_account";
-        this.label_account.Size = new System.Drawing.Size(37, 15);
-        this.label_account.TabIndex = 2;
-        this.label_account.Text = "帳號";
-        this.label_account.Visible = false;
+        label_account.AutoSize = true;
+        label_account.Location = new Point(273, 196);
+        label_account.Name = "label_account";
+        label_account.Size = new Size(39, 19);
+        label_account.TabIndex = 2;
+        label_account.Text = "帳號";
+        label_account.Visible = false;
         // 
         // label_password
         // 
-        this.label_password.AutoSize = true;
-        this.label_password.Location = new System.Drawing.Point(243, 284);
-        this.label_password.Name = "label_password";
-        this.label_password.Size = new System.Drawing.Size(37, 15);
-        this.label_password.TabIndex = 3;
-        this.label_password.Text = "密碼";
-        this.label_password.Visible = false;
+        label_password.AutoSize = true;
+        label_password.Location = new Point(273, 360);
+        label_password.Name = "label_password";
+        label_password.Size = new Size(39, 19);
+        label_password.TabIndex = 3;
+        label_password.Text = "密碼";
+        label_password.Visible = false;
         // 
         // textBox_account
         // 
-        this.textBox_account.Location = new System.Drawing.Point(304, 152);
-        this.textBox_account.Name = "textBox_account";
-        this.textBox_account.Size = new System.Drawing.Size(199, 25);
-        this.textBox_account.TabIndex = 4;
-        this.textBox_account.Visible = false;
+        textBox_account.Location = new Point(342, 193);
+        textBox_account.Margin = new Padding(3, 4, 3, 4);
+        textBox_account.Name = "textBox_account";
+        textBox_account.Size = new Size(223, 27);
+        textBox_account.TabIndex = 4;
+        textBox_account.Visible = false;
         // 
         // textBox_password
         // 
-        this.textBox_password.Location = new System.Drawing.Point(304, 281);
-        this.textBox_password.Name = "textBox_password";
-        this.textBox_password.Size = new System.Drawing.Size(199, 25);
-        this.textBox_password.TabIndex = 5;
-        this.textBox_password.Visible = false;
+        textBox_password.Location = new Point(342, 356);
+        textBox_password.Margin = new Padding(3, 4, 3, 4);
+        textBox_password.Name = "textBox_password";
+        textBox_password.Size = new Size(223, 27);
+        textBox_password.TabIndex = 5;
+        textBox_password.Visible = false;
         // 
         // button_login
         // 
-        this.button_login.Location = new System.Drawing.Point(548, 208);
-        this.button_login.Name = "button_login";
-        this.button_login.Size = new System.Drawing.Size(75, 23);
-        this.button_login.TabIndex = 6;
-        this.button_login.Text = "登入";
-        this.button_login.UseVisualStyleBackColor = true;
-        this.button_login.Visible = false;
-        this.button_login.Click += new System.EventHandler(this.button_login_Click);
+        button_login.Location = new Point(616, 263);
+        button_login.Margin = new Padding(3, 4, 3, 4);
+        button_login.Name = "button_login";
+        button_login.Size = new Size(84, 29);
+        button_login.TabIndex = 6;
+        button_login.Text = "登入";
+        button_login.UseVisualStyleBackColor = true;
+        button_login.Visible = false;
+        button_login.Click += button_login_Click;
         // 
         // button_add
         // 
-        this.button_add.Location = new System.Drawing.Point(51, 151);
-        this.button_add.Name = "button_add";
-        this.button_add.Size = new System.Drawing.Size(75, 23);
-        this.button_add.TabIndex = 7;
-        this.button_add.Text = "新增訂單";
-        this.button_add.UseVisualStyleBackColor = true;
-        this.button_add.Visible = false;
-        this.button_add.Click += new System.EventHandler(this.button_add_Click);
+        button_add.Location = new Point(57, 191);
+        button_add.Margin = new Padding(3, 4, 3, 4);
+        button_add.Name = "button_add";
+        button_add.Size = new Size(84, 29);
+        button_add.TabIndex = 7;
+        button_add.Text = "新增訂單";
+        button_add.UseVisualStyleBackColor = true;
+        button_add.Visible = false;
+        button_add.Click += button_add_Click;
         // 
         // button_list
         // 
-        this.button_list.Location = new System.Drawing.Point(51, 208);
-        this.button_list.Name = "button_list";
-        this.button_list.Size = new System.Drawing.Size(75, 23);
-        this.button_list.TabIndex = 8;
-        this.button_list.Text = "列出所有訂單";
-        this.button_list.UseVisualStyleBackColor = true;
-        this.button_list.Visible = false;
-        this.button_list.Click += new System.EventHandler(this.button_list_Click);
+        button_list.Location = new Point(57, 263);
+        button_list.Margin = new Padding(3, 4, 3, 4);
+        button_list.Name = "button_list";
+        button_list.Size = new Size(84, 29);
+        button_list.TabIndex = 8;
+        button_list.Text = "列出所有訂單";
+        button_list.UseVisualStyleBackColor = true;
+        button_list.Visible = false;
+        button_list.Click += button_list_Click;
         // 
         // listBox
         // 
-        this.listBox.FormattingEnabled = true;
-        this.listBox.ItemHeight = 15;
-        this.listBox.Location = new System.Drawing.Point(183, 125);
-        this.listBox.Name = "listBox";
-        this.listBox.Size = new System.Drawing.Size(441, 244);
-        this.listBox.TabIndex = 9;
-        this.listBox.Visible = false;
+        listBox.FormattingEnabled = true;
+        listBox.ItemHeight = 19;
+        listBox.Location = new Point(206, 158);
+        listBox.Margin = new Padding(3, 4, 3, 4);
+        listBox.Name = "listBox";
+        listBox.Size = new Size(496, 308);
+        listBox.TabIndex = 9;
+        listBox.Visible = false;
         // 
         // button_penguin
         // 
-        this.button_penguin.Location = new System.Drawing.Point(236, 248);
-        this.button_penguin.Name = "button_penguin";
-        this.button_penguin.Size = new System.Drawing.Size(75, 23);
-        this.button_penguin.TabIndex = 10;
-        this.button_penguin.Text = "企鵝";
-        this.button_penguin.UseVisualStyleBackColor = true;
-        this.button_penguin.Visible = false;
-        this.button_penguin.Click += new System.EventHandler(this.button_penguin_Click);
+        button_penguin.Location = new Point(246, 314);
+        button_penguin.Margin = new Padding(3, 4, 3, 4);
+        button_penguin.Name = "button_penguin";
+        button_penguin.Size = new Size(125, 29);
+        button_penguin.TabIndex = 10;
+        button_penguin.Text = "企鵝";
+        button_penguin.UseVisualStyleBackColor = true;
+        button_penguin.Visible = false;
+        button_penguin.Click += button_penguin_Click;
         // 
         // button_pork
         // 
-        this.button_pork.Location = new System.Drawing.Point(367, 248);
-        this.button_pork.Name = "button_pork";
-        this.button_pork.Size = new System.Drawing.Size(75, 23);
-        this.button_pork.TabIndex = 11;
-        this.button_pork.Text = "炸豬排";
-        this.button_pork.UseVisualStyleBackColor = true;
-        this.button_pork.Visible = false;
-        this.button_pork.Click += new System.EventHandler(this.button_chicken_Click);
+        button_pork.Location = new Point(404, 314);
+        button_pork.Margin = new Padding(3, 4, 3, 4);
+        button_pork.Name = "button_pork";
+        button_pork.Size = new Size(125, 29);
+        button_pork.TabIndex = 11;
+        button_pork.Text = "炸豬排";
+        button_pork.UseVisualStyleBackColor = true;
+        button_pork.Visible = false;
+        button_pork.Click += button_pork_Click;
         // 
         // button_shrimp
         // 
-        this.button_shrimp.Location = new System.Drawing.Point(492, 248);
-        this.button_shrimp.Name = "button_shrimp";
-        this.button_shrimp.Size = new System.Drawing.Size(75, 23);
-        this.button_shrimp.TabIndex = 12;
-        this.button_shrimp.Text = "炸蝦";
-        this.button_shrimp.UseVisualStyleBackColor = true;
-        this.button_shrimp.Visible = false;
-        this.button_shrimp.Click += new System.EventHandler(this.button_shrimp_Click);
+        button_shrimp.Location = new Point(566, 314);
+        button_shrimp.Margin = new Padding(3, 4, 3, 4);
+        button_shrimp.Name = "button_shrimp";
+        button_shrimp.Size = new Size(125, 29);
+        button_shrimp.TabIndex = 12;
+        button_shrimp.Text = "炸蝦";
+        button_shrimp.UseVisualStyleBackColor = true;
+        button_shrimp.Visible = false;
+        button_shrimp.Click += button_shrimp_Click;
         // 
         // button_submit
         // 
-        this.button_submit.Location = new System.Drawing.Point(367, 337);
-        this.button_submit.Name = "button_submit";
-        this.button_submit.Size = new System.Drawing.Size(75, 23);
-        this.button_submit.TabIndex = 13;
-        this.button_submit.Text = "送出訂單";
-        this.button_submit.UseVisualStyleBackColor = true;
-        this.button_submit.Visible = false;
-        this.button_submit.Click += new System.EventHandler(this.button_submit_Click);
+        button_submit.Location = new Point(413, 427);
+        button_submit.Margin = new Padding(3, 4, 3, 4);
+        button_submit.Name = "button_submit";
+        button_submit.Size = new Size(84, 29);
+        button_submit.TabIndex = 13;
+        button_submit.Text = "送出訂單";
+        button_submit.UseVisualStyleBackColor = true;
+        button_submit.Visible = false;
+        button_submit.Click += button_submit_Click;
         // 
         // label_amount
         // 
-        this.label_amount.AutoSize = true;
-        this.label_amount.Location = new System.Drawing.Point(255, 193);
-        this.label_amount.Name = "label_amount";
-        this.label_amount.Size = new System.Drawing.Size(82, 15);
-        this.label_amount.TabIndex = 14;
-        this.label_amount.Text = "請輸入數量";
-        this.label_amount.Visible = false;
+        label_amount.AutoSize = true;
+        label_amount.Location = new Point(287, 244);
+        label_amount.Name = "label_amount";
+        label_amount.Size = new Size(84, 19);
+        label_amount.TabIndex = 14;
+        label_amount.Text = "請輸入數量";
+        label_amount.Visible = false;
         // 
         // textBox_amount
         // 
-        this.textBox_amount.Location = new System.Drawing.Point(343, 190);
-        this.textBox_amount.Name = "textBox_amount";
-        this.textBox_amount.Size = new System.Drawing.Size(199, 25);
-        this.textBox_amount.TabIndex = 15;
-        this.textBox_amount.Visible = false;
+        textBox_amount.Location = new Point(386, 241);
+        textBox_amount.Margin = new Padding(3, 4, 3, 4);
+        textBox_amount.Name = "textBox_amount";
+        textBox_amount.Size = new Size(223, 27);
+        textBox_amount.TabIndex = 15;
+        textBox_amount.Visible = false;
+        // 
+        // button_new_account
+        // 
+        button_new_account.Location = new Point(57, 339);
+        button_new_account.Name = "button_new_account";
+        button_new_account.Size = new Size(84, 29);
+        button_new_account.TabIndex = 16;
+        button_new_account.Text = "新增帳號";
+        button_new_account.UseVisualStyleBackColor = true;
+        button_new_account.Visible = false;
+        button_new_account.Click += button_new_account_Click;
+        // 
+        // button_logout
+        // 
+        button_logout.Location = new Point(57, 407);
+        button_logout.Name = "button_logout";
+        button_logout.Size = new Size(84, 29);
+        button_logout.TabIndex = 17;
+        button_logout.Text = "登出";
+        button_logout.UseVisualStyleBackColor = true;
+        button_logout.Visible = false;
+        button_logout.Click += button_logout_Click;
+        // 
+        // button_add_account
+        // 
+        button_add_account.Location = new Point(616, 263);
+        button_add_account.Name = "button_add_account";
+        button_add_account.Size = new Size(84, 29);
+        button_add_account.TabIndex = 18;
+        button_add_account.Text = "新增帳號";
+        button_add_account.UseVisualStyleBackColor = true;
+        button_add_account.Visible = false;
+        button_add_account.Click += button_add_account_Click;
+        // 
+        // button_cancel
+        // 
+        button_cancel.Location = new Point(616, 427);
+        button_cancel.Name = "button_cancel";
+        button_cancel.Size = new Size(84, 29);
+        button_cancel.TabIndex = 19;
+        button_cancel.Text = "取消";
+        button_cancel.UseVisualStyleBackColor = true;
+        button_cancel.Visible = false;
+        button_cancel.Click += button_cancel_Click;
         // 
         // Form1
         // 
-        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Controls.Add(this.textBox_amount);
-        this.Controls.Add(this.label_amount);
-        this.Controls.Add(this.button_submit);
-        this.Controls.Add(this.button_shrimp);
-        this.Controls.Add(this.button_pork);
-        this.Controls.Add(this.button_penguin);
-        this.Controls.Add(this.button_list);
-        this.Controls.Add(this.button_add);
-        this.Controls.Add(this.button_login);
-        this.Controls.Add(this.textBox_password);
-        this.Controls.Add(this.textBox_account);
-        this.Controls.Add(this.label_password);
-        this.Controls.Add(this.label_account);
-        this.Controls.Add(this.button_open);
-        this.Controls.Add(this.message);
-        this.Controls.Add(this.listBox);
-        this.Name = "Form1";
-        this.Text = "Form1";
-        this.ResumeLayout(false);
-        this.PerformLayout();
-
+        AutoScaleDimensions = new SizeF(9F, 19F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(900, 570);
+        Controls.Add(button_cancel);
+        Controls.Add(button_add_account);
+        Controls.Add(button_logout);
+        Controls.Add(button_new_account);
+        Controls.Add(textBox_amount);
+        Controls.Add(label_amount);
+        Controls.Add(button_submit);
+        Controls.Add(button_shrimp);
+        Controls.Add(button_pork);
+        Controls.Add(button_penguin);
+        Controls.Add(button_list);
+        Controls.Add(button_add);
+        Controls.Add(button_login);
+        Controls.Add(textBox_password);
+        Controls.Add(textBox_account);
+        Controls.Add(label_password);
+        Controls.Add(label_account);
+        Controls.Add(button_open);
+        Controls.Add(message);
+        Controls.Add(listBox);
+        Margin = new Padding(3, 4, 3, 4);
+        Name = "Form1";
+        Text = "Form1";
+        ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -253,4 +318,8 @@ partial class Form1
     private System.Windows.Forms.Button button_submit;
     private System.Windows.Forms.Label label_amount;
     private System.Windows.Forms.TextBox textBox_amount;
+    private Button button_new_account;
+    private Button button_logout;
+    private Button button_add_account;
+    private Button button_cancel;
 }
