@@ -16,36 +16,23 @@ public partial class Form1 : Form
         InitializeComponent();
         index = 1000;
         accounts["admin"] = "admin";
+        page_open();
     }
 
     private void page_open()
     {
         // open
         message.Text = "歡迎來到角落生物商店";
-        button_open.Visible = true;
+        panel_open.Visible = true;
 
         // login
-        label_account.Visible = false;
-        label_password.Visible = false;
-        textBox_account.Visible = false;
-        textBox_password.Visible = false;
-        button_login.Visible = false;
-        button_add_account.Visible = false;
+        panel_login.Visible = false;
 
         // menu
-        button_add.Visible = false;
-        button_list.Visible = false;
-        button_new_account.Visible = false;
-        button_logout.Visible = false;
-        listBox.Visible = false;
+        panel_menu.Visible = false;
 
         // order
-        label_amount.Visible = false;
-        textBox_amount.Visible = false;
-        button_penguin.Visible = false;
-        button_pork.Visible = false;
-        button_shrimp.Visible = false;
-        button_submit.Visible = false;
+        panel_order.Visible = false;
 
         button_cancel.Visible = false;
     }
@@ -53,32 +40,20 @@ public partial class Form1 : Form
     private void page_login()
     {
         // open
-        button_open.Visible = false;
+        panel_open.Visible = false;
 
         // login
-        label_account.Visible = true;
-        label_password.Visible = true;
-        textBox_account.Visible = true;
-        textBox_password.Visible = true;
+        panel_login.Visible = true;
         button_login.Visible = true;
         button_add_account.Visible = false;
         textBox_account.Text = "";
         textBox_password.Text = "";
 
         // menu
-        button_add.Visible = false;
-        button_list.Visible = false;
-        button_new_account.Visible = false;
-        button_logout.Visible = false;
-        listBox.Visible = false;
+        panel_menu.Visible = false;
 
         // order
-        label_amount.Visible = false;
-        textBox_amount.Visible = false;
-        button_penguin.Visible = false;
-        button_pork.Visible = false;
-        button_shrimp.Visible = false;
-        button_submit.Visible = false;
+        panel_order.Visible = false;
 
         button_cancel.Visible = false;
     }
@@ -86,63 +61,38 @@ public partial class Form1 : Form
     private void page_new_account()
     {
         // open
-        button_open.Visible = false;
+        panel_open.Visible = false;
 
         // login
-        label_account.Visible = true;
-        label_password.Visible = true;
-        textBox_account.Visible = true;
-        textBox_password.Visible = true;
-        button_login.Visible = false;
+        panel_login.Visible = true;
         button_add_account.Visible = true;
+        button_login.Visible = false;
         textBox_account.Text = "";
         textBox_password.Text = "";
 
         // menu
-        button_add.Visible = false;
-        button_list.Visible = false;
-        button_new_account.Visible = false;
-        button_logout.Visible = false;
-        listBox.Visible = false;
+        panel_menu.Visible = false;
 
         // order
-        label_amount.Visible = false;
-        textBox_amount.Visible = false;
-        button_penguin.Visible = false;
-        button_pork.Visible = false;
-        button_shrimp.Visible = false;
-        button_submit.Visible = false;
+        panel_order.Visible = false;
 
         button_cancel.Visible = true;
+        button_cancel.BringToFront();
     }
 
     private void page_menu()
     {
         // open
-        button_open.Visible = false;
+        panel_open.Visible = false;
 
         // login
-        label_account.Visible = false;
-        label_password.Visible = false;
-        textBox_account.Visible = false;
-        textBox_password.Visible = false;
-        button_login.Visible = false;
-        button_add_account.Visible = false;
+        panel_login.Visible = false;
 
         // menu
-        button_add.Visible = true;
-        button_list.Visible = true;
-        button_new_account.Visible = true;
-        button_logout.Visible = true;
-        listBox.Visible = true;
+        panel_menu.Visible = true;
 
         // order
-        label_amount.Visible = false;
-        textBox_amount.Visible = false;
-        button_penguin.Visible = false;
-        button_pork.Visible = false;
-        button_shrimp.Visible = false;
-        button_submit.Visible = false;
+        panel_order.Visible = false;
 
         button_cancel.Visible = false;
     }
@@ -150,36 +100,23 @@ public partial class Form1 : Form
     private void page_order()
     {
         // open
-        button_open.Visible = false;
+        panel_open.Visible = false;
 
         // login
-        label_account.Visible = false;
-        label_password.Visible = false;
-        textBox_account.Visible = false;
-        textBox_password.Visible = false;
-        button_login.Visible = false;
-        button_add_account.Visible = false;
+        panel_login.Visible = false;
 
         // menu
-        button_add.Visible = false;
-        button_list.Visible = false;
-        button_new_account.Visible = false;
-        button_logout.Visible = false;
-        listBox.Visible = false;
+        panel_menu.Visible = false;
 
         // order
-        label_amount.Visible = true;
-        textBox_amount.Visible = true;
-        button_penguin.Visible = true;
-        button_pork.Visible = true;
-        button_shrimp.Visible = true;
-        button_submit.Visible = true;
+        panel_order.Visible = true;
         textBox_amount.Text = "";
         button_penguin.Text = "企鵝";
         button_pork.Text = "炸豬排";
         button_shrimp.Text = "炸蝦";
 
         button_cancel.Visible = true;
+        button_cancel.BringToFront();
     }
 
     private void button_open_Click(object sender, EventArgs e)
@@ -283,6 +220,10 @@ public partial class Form1 : Form
             string text = "訂單編號: " + item.index + " 購買了 " + item.amount + " 個 " + item.option + ", 此訂單由 " + item.user + " 新增";
             listBox.Items.Add(text);
         }
+        if (listBox.Items.Count != 0)
+        {
+            listBox.Items.Add("\n");
+        }
     }
 
     private void button_new_account_Click(object sender, EventArgs e)
@@ -317,5 +258,15 @@ public partial class Form1 : Form
     {
         message.Text = "歡迎登入，" + currentUser;
         page_menu();
+    }
+
+    private void button_clear_Click(object sender, EventArgs e)
+    {
+        listBox.Items.Clear();
+    }
+
+    private void button_exit_Click(object sender, EventArgs e)
+    {
+        Application.Exit();
     }
 }
