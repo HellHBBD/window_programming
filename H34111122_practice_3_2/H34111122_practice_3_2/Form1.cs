@@ -240,6 +240,11 @@ public partial class Form1 : Form
 
     private void button_add_account_Click(object sender, EventArgs e)
     {
+        if (textBox_account.Text == "" || textBox_password.Text == "")
+        {
+            message.Text = "帳號密碼不能是空的";
+            return;
+        }
         if (accounts.ContainsKey(textBox_account.Text))
         {
             message.Text = "此使用者已存在";

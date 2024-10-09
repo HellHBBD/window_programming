@@ -51,9 +51,9 @@ partial class Form1
         button_clear = new Button();
         panel_open = new Panel();
         panel_login = new Panel();
+        button_exit = new Button();
         panel_menu = new Panel();
         panel_order = new Panel();
-        button_exit = new Button();
         panel_open.SuspendLayout();
         panel_login.SuspendLayout();
         panel_menu.SuspendLayout();
@@ -280,18 +280,27 @@ partial class Form1
         // 
         // panel_login
         // 
-        panel_login.Controls.Add(button_exit);
-        panel_login.Controls.Add(button_cancel);
         panel_login.Controls.Add(button_add_account);
         panel_login.Controls.Add(button_login);
         panel_login.Controls.Add(textBox_password);
         panel_login.Controls.Add(textBox_account);
         panel_login.Controls.Add(label_password);
         panel_login.Controls.Add(label_account);
+        panel_login.Controls.Add(button_exit);
         panel_login.Location = new Point(0, 0);
         panel_login.Name = "panel_login";
         panel_login.Size = new Size(900, 570);
         panel_login.TabIndex = 21;
+        // 
+        // button_exit
+        // 
+        button_exit.Location = new Point(616, 427);
+        button_exit.Name = "button_exit";
+        button_exit.Size = new Size(86, 29);
+        button_exit.TabIndex = 19;
+        button_exit.Text = "退出程式";
+        button_exit.UseVisualStyleBackColor = true;
+        button_exit.Click += button_exit_Click;
         // 
         // panel_menu
         // 
@@ -319,22 +328,13 @@ partial class Form1
         panel_order.Size = new Size(900, 570);
         panel_order.TabIndex = 23;
         // 
-        // button_exit
-        // 
-        button_exit.Location = new Point(616, 427);
-        button_exit.Name = "button_exit";
-        button_exit.Size = new Size(86, 29);
-        button_exit.TabIndex = 19;
-        button_exit.Text = "退出程式";
-        button_exit.UseVisualStyleBackColor = true;
-        button_exit.Click += button_exit_Click;
-        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(900, 570);
         Controls.Add(message);
+        Controls.Add(button_cancel);
         Controls.Add(panel_login);
         Controls.Add(panel_menu);
         Controls.Add(panel_order);
