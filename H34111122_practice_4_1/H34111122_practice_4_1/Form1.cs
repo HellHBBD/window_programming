@@ -13,26 +13,26 @@ public partial class Form1 : Form
     private void chat1()
     {
         BackColor = color1;
-        richTextBox_left.Clear();
+        richTextBox.Clear();
         foreach (var item in record)
         {
-            richTextBox_left.SelectionAlignment = HorizontalAlignment.Left;
-            richTextBox_left.AppendText("楷特:" + item + "\n");
-            richTextBox_left.SelectionAlignment = HorizontalAlignment.Right;
-            richTextBox_left.AppendText("斗哥:汪!\n");
+            richTextBox.SelectionAlignment = HorizontalAlignment.Left;
+            richTextBox.AppendText("楷特:" + item + "\n");
+            richTextBox.SelectionAlignment = HorizontalAlignment.Right;
+            richTextBox.AppendText("斗哥:汪!\n");
         }
     }
 
     private void chat2()
     {
         BackColor = color2;
-        richTextBox_left.Clear();
+        richTextBox.Clear();
         foreach (var item in record)
         {
-            richTextBox_left.SelectionAlignment = HorizontalAlignment.Left;
-            richTextBox_left.AppendText("斗哥:汪!\n");
-            richTextBox_left.SelectionAlignment = HorizontalAlignment.Right;
-            richTextBox_left.AppendText("楷特:" + item + "\n");
+            richTextBox.SelectionAlignment = HorizontalAlignment.Left;
+            richTextBox.AppendText("斗哥:汪!\n");
+            richTextBox.SelectionAlignment = HorizontalAlignment.Right;
+            richTextBox.AppendText("楷特:" + item + "\n");
         }
     }
 

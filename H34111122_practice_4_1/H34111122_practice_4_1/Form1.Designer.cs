@@ -29,37 +29,35 @@ partial class Form1
     private void InitializeComponent()
     {
         panel1 = new Panel();
-        richTextBox_left = new RichTextBox();
+        richTextBox = new RichTextBox();
         button_send = new Button();
         textBox_chat = new TextBox();
         tabControl = new TabControl();
         tabPage1 = new TabPage();
         tabPage2 = new TabPage();
-        richTextBox_right = new RichTextBox();
         panel1.SuspendLayout();
         tabControl.SuspendLayout();
         SuspendLayout();
         // 
         // panel1
         // 
-        panel1.Controls.Add(richTextBox_left);
+        panel1.Controls.Add(richTextBox);
         panel1.Controls.Add(button_send);
         panel1.Controls.Add(textBox_chat);
         panel1.Controls.Add(tabControl);
-        panel1.Controls.Add(richTextBox_right);
         panel1.Location = new Point(0, 0);
         panel1.Name = "panel1";
         panel1.Size = new Size(800, 450);
         panel1.TabIndex = 0;
         panel1.DoubleClick += panel1_DoubleClick;
         // 
-        // richTextBox_left
+        // richTextBox
         // 
-        richTextBox_left.Location = new Point(60, 50);
-        richTextBox_left.Name = "richTextBox_left";
-        richTextBox_left.Size = new Size(692, 332);
-        richTextBox_left.TabIndex = 5;
-        richTextBox_left.Text = "";
+        richTextBox.Location = new Point(58, 48);
+        richTextBox.Name = "richTextBox";
+        richTextBox.Size = new Size(692, 332);
+        richTextBox.TabIndex = 5;
+        richTextBox.Text = "";
         // 
         // button_send
         // 
@@ -111,14 +109,6 @@ partial class Form1
         tabPage2.Text = "楷特";
         tabPage2.UseVisualStyleBackColor = true;
         // 
-        // richTextBox_right
-        // 
-        richTextBox_right.Location = new Point(60, 50);
-        richTextBox_right.Name = "richTextBox_right";
-        richTextBox_right.Size = new Size(692, 332);
-        richTextBox_right.TabIndex = 6;
-        richTextBox_right.Text = "";
-        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
@@ -141,6 +131,5 @@ partial class Form1
     public TabControl tabControl;
     public TabPage tabPage1;
     public TabPage tabPage2;
-    private RichTextBox richTextBox_left;
-    private RichTextBox richTextBox_right;
+    private RichTextBox richTextBox;
 }
