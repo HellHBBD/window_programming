@@ -33,11 +33,11 @@ namespace H34111122_practice_4_1
         {
             /*Form_chat.change_color(this.BackColor);*/
             Program.Form_chat.BackColor = this.BackColor;
-            if (Program.Form_chat.tabControl.SelectedTab == Program.Form_chat.tabPage1)
+            if (Program.Form_chat.tabControl.SelectedTab == Program.Form_chat.tabPage_dou)
             {
                 Program.Form_chat.color1 = this.BackColor;
             }
-            if (Program.Form_chat.tabControl.SelectedTab == Program.Form_chat.tabPage2)
+            if (Program.Form_chat.tabControl.SelectedTab == Program.Form_chat.tabPage_kai)
             {
                 Program.Form_chat.color2 = this.BackColor;
             }

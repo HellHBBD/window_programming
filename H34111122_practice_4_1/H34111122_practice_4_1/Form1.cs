@@ -10,29 +10,29 @@ public partial class Form1 : Form
         InitializeComponent();
     }
 
-    private void chat1()
+    private void chat_dou()
     {
         BackColor = color1;
-        richTextBox.Clear();
+        richTextBox_dou.Clear();
         foreach (var item in record)
         {
-            richTextBox.SelectionAlignment = HorizontalAlignment.Left;
-            richTextBox.AppendText("楷特:" + item + "\n");
-            richTextBox.SelectionAlignment = HorizontalAlignment.Right;
-            richTextBox.AppendText("斗哥:汪!\n");
+            richTextBox_dou.SelectionAlignment = HorizontalAlignment.Left;
+            richTextBox_dou.AppendText("楷特:" + item + "\n");
+            richTextBox_dou.SelectionAlignment = HorizontalAlignment.Right;
+            richTextBox_dou.AppendText("斗哥:汪!\n");
         }
     }
 
-    private void chat2()
+    private void char_kai()
     {
         BackColor = color2;
-        richTextBox.Clear();
+        richTextBox_kai.Clear();
         foreach (var item in record)
         {
-            richTextBox.SelectionAlignment = HorizontalAlignment.Left;
-            richTextBox.AppendText("斗哥:汪!\n");
-            richTextBox.SelectionAlignment = HorizontalAlignment.Right;
-            richTextBox.AppendText("楷特:" + item + "\n");
+            richTextBox_kai.SelectionAlignment = HorizontalAlignment.Right;
+            richTextBox_kai.AppendText("楷特:" + item + "\n");
+            richTextBox_kai.SelectionAlignment = HorizontalAlignment.Left;
+            richTextBox_kai.AppendText("斗哥:汪!\n");
         }
     }
 
@@ -43,21 +43,21 @@ public partial class Form1 : Form
 
     private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (tabControl.SelectedTab == tabPage1)
+        if (tabControl.SelectedTab == tabPage_dou)
         {
             textBox_chat.Enabled = false;
             button_send.Enabled = false;
 
             // print chat record
-            chat1();
+            chat_dou();
         }
-        if (tabControl.SelectedTab == tabPage2)
+        if (tabControl.SelectedTab == tabPage_kai)
         {
             textBox_chat.Enabled = true;
             button_send.Enabled = true;
 
             // print chat record
-            chat2();
+            char_kai();
         }
     }
 
@@ -67,7 +67,7 @@ public partial class Form1 : Form
         {
             record.Add(textBox_chat.Text);
             textBox_chat.Clear();
-            chat2();
+            char_kai();
         }
     }
 
