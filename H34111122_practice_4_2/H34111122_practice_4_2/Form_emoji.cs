@@ -54,6 +54,7 @@ namespace H34111122_practice_4_2
             radioButton[3].Location = new Point(25, 215);
             radioButton[4].Location = new Point(305, 215);
             radioButton[5].Location = new Point(578, 215);
+            ReturnValue = -1;
         }
 
         private void button_send_Click(object sender, EventArgs e)
