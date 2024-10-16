@@ -18,15 +18,12 @@ namespace H34111122_practice_4_2
 
         private Image ResizeImage(Image image, int width, int height)
         {
-            // 創建一個 Bitmap 來存放調整大小後的圖片
             Bitmap resizedBitmap = new Bitmap(width, height);
 
             using (Graphics g = Graphics.FromImage(resizedBitmap))
             {
-                // 設置高質量插值模式
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 
-                // 繪製縮放後的圖片
                 g.DrawImage(image, 0, 0, width, height);
             }
 
