@@ -12,6 +12,8 @@ namespace H34111122_practice_4_2
 {
     public partial class Form2 : Form
     {
+        public Color ReturnValue;
+
         public Form2()
         {
             InitializeComponent();
@@ -31,16 +33,8 @@ namespace H34111122_practice_4_2
 
         private void button_confirm_Click(object sender, EventArgs e)
         {
-            /*Form_chat.change_color(this.BackColor);*/
-            Program.Form_chat.BackColor = this.BackColor;
-            if (Program.Form_chat.tabControl.SelectedTab == Program.Form_chat.tabPage_dog)
-            {
-                Program.Form_chat.color1 = this.BackColor;
-            }
-            if (Program.Form_chat.tabControl.SelectedTab == Program.Form_chat.tabPage_cat)
-            {
-                Program.Form_chat.color2 = this.BackColor;
-            }
+            ReturnValue = this.BackColor;
+            Close();
         }
     }
 }
