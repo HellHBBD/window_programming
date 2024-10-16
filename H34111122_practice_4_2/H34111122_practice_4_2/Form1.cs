@@ -55,24 +55,6 @@ public partial class Form1 : Form
                 }
                 richTextBox_dog.SelectionAlignment = HorizontalAlignment.Right;
                 richTextBox_dog.AppendText("斗哥:");
-                if (item.Text == "")
-                {
-                    using (MemoryStream stream = new MemoryStream())
-                    {
-                        Image emoji = ResizeImage(Image.FromFile("Images/" + item.Emoji + ".png"), 18, 18);
-                        emoji.Save(stream, System.Drawing.Imaging.ImageFormat.Png); // 保存圖片到 stream
-                        stream.Position = 0;  // 重置位置到流的起點
-
-                        // 載入圖片到 Clipboard 並將其插入到 RichTextBox 中
-                        Clipboard.SetImage(Image.FromStream(stream));
-                        richTextBox_dog.Paste(); // 將圖片插入到 RichTextBox 當前光標位置
-                    }
-                    richTextBox_dog.AppendText("\n");
-                }
-                else
-                {
-                    richTextBox_dog.AppendText(item.Text + "\n");
-                }
             }
             if (item.Sender == "cat")
             {
@@ -86,24 +68,24 @@ public partial class Form1 : Form
                 }
                 richTextBox_dog.SelectionAlignment = HorizontalAlignment.Left;
                 richTextBox_dog.AppendText("楷特:");
-                if (item.Text == "")
+            }
+            if (item.Text == "")
+            {
+                using (MemoryStream stream = new MemoryStream())
                 {
-                    using (MemoryStream stream = new MemoryStream())
-                    {
-                        Image emoji = ResizeImage(Image.FromFile("Images/" + item.Emoji + ".png"), 18, 18);
-                        emoji.Save(stream, System.Drawing.Imaging.ImageFormat.Png); // 保存圖片到 stream
-                        stream.Position = 0;  // 重置位置到流的起點
+                    Image emoji = ResizeImage(Image.FromFile("Images/" + item.Emoji + ".png"), 18, 18);
+                    emoji.Save(stream, System.Drawing.Imaging.ImageFormat.Png); // 保存圖片到 stream
+                    stream.Position = 0;  // 重置位置到流的起點
 
-                        // 載入圖片到 Clipboard 並將其插入到 RichTextBox 中
-                        Clipboard.SetImage(Image.FromStream(stream));
-                        richTextBox_dog.Paste(); // 將圖片插入到 RichTextBox 當前光標位置
-                    }
-                    richTextBox_dog.AppendText("\n");
+                    // 載入圖片到 Clipboard 並將其插入到 RichTextBox 中
+                    Clipboard.SetImage(Image.FromStream(stream));
+                    richTextBox_dog.Paste(); // 將圖片插入到 RichTextBox 當前光標位置
                 }
-                else
-                {
-                    richTextBox_dog.AppendText(item.Text + "\n");
-                }
+                richTextBox_dog.AppendText("\n");
+            }
+            else
+            {
+                richTextBox_dog.AppendText(item.Text + "\n");
             }
         }
     }
@@ -157,7 +139,7 @@ public partial class Form1 : Form
             }
             else
             {
-                richTextBox_dog.AppendText(item.Text + "\n");
+                richTextBox_cat.AppendText(item.Text + "\n");
             }
         }
     }
