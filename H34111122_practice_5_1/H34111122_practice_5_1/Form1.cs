@@ -2,35 +2,22 @@ namespace H34111122_practice_5_1;
 
 public partial class Form1 : Form
 {
-    int step = 10;
+    int step = 15;
     int catch_count = 0;
     int miss_count = 0;
     Image picture;
-    static int size = 5;
     int speed = 4;
+    static int size = 5;
     PictureBox[] fruit = new PictureBox[Form1.size];
     Random random = new Random();
-
-    /*private Image ResizeImage(Image image, int width, int height)*/
-    /*{*/
-    /*    Bitmap resizedBitmap = new Bitmap(width, height);*/
-    /**/
-    /*    using (Graphics g = Graphics.FromImage(resizedBitmap))*/
-    /*    {*/
-    /*        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;*/
-    /**/
-    /*        g.DrawImage(image, 0, 0, width, height);*/
-    /*    }*/
-    /**/
-    /*    return resizedBitmap;*/
-    /*}*/
+    bool left, right;
 
     public Form1()
     {
         InitializeComponent();
         KeyPreview = true;
-        /*picture = ResizeImage(Image.FromFile("Images/dog.png"), 30, 30);*/
         picture = Image.FromFile("img/g1.png");
+        pictureBox_plate.Top = ClientSize.Height - ClientSize.Height / size;
         for (int i = 0; i < fruit.Length; i++)
         {
             fruit[i] = new PictureBox();
@@ -63,47 +50,46 @@ public partial class Form1 : Form
     {
         button_start.Visible = false;
         panel_game.Visible = true;
-        timer.Start();
+        timer_fall.Start();
     }
 
     private void Form1_KeyDown(object sender, KeyEventArgs e)
     {
-        if ((e.KeyCode == Keys.A || e.KeyCode == Keys.Left) && e.Shift)
-        {
-            step = 40;
-            moveLeft();
-            step = 10;
-            return;
-        }
-        if ((e.KeyCode == Keys.D || e.KeyCode == Keys.Right) && e.Shift)
-        {
-            step = 40;
-            moveLeft();
-            step = 10;
-            return;
-        }
         switch (e.KeyCode)
         {
             case Keys.A:
             case Keys.Left:
-                moveLeft();
+                left = true;
                 break;
             case Keys.D:
             case Keys.Right:
-                moveRight();
+                right = true;
+                break;
+            case Keys.ShiftKey:
+                step = 20;
                 break;
         }
     }
 
     private void Form1_KeyUp(object sender, KeyEventArgs e)
     {
-        if (e.Shift)
+        switch (e.KeyCode)
         {
-            step = 10;
+            case Keys.A:
+            case Keys.Left:
+                left = false;
+                break;
+            case Keys.D:
+            case Keys.Right:
+                right = false;
+                break;
+            case Keys.ShiftKey:
+                step = 10;
+                break;
         }
     }
 
-    private void timer_Tick(object sender, EventArgs e)
+    private void timer_fall_Tick(object sender, EventArgs e)
     {
         foreach (var item in fruit)
         {
@@ -124,6 +110,14 @@ public partial class Form1 : Form
                 miss_count++;
             }
             label.Text = catch_count + "/" + miss_count;
+        }
+        if (right && !left)
+        {
+            moveRight();
+        }
+        else if (left && !right)
+        {
+            moveLeft();
         }
     }
 }

@@ -32,8 +32,8 @@ partial class Form1
         button_start = new Button();
         pictureBox_plate = new PictureBox();
         panel_game = new Panel();
-        timer = new System.Windows.Forms.Timer(components);
         label = new Label();
+        timer_fall = new System.Windows.Forms.Timer(components);
         ((System.ComponentModel.ISupportInitialize)pictureBox_plate).BeginInit();
         panel_game.SuspendLayout();
         SuspendLayout();
@@ -67,19 +67,19 @@ partial class Form1
         panel_game.TabIndex = 2;
         panel_game.Visible = false;
         // 
-        // timer
-        // 
-        timer.Interval = 20;
-        timer.Tick += timer_Tick;
-        // 
         // label
         // 
         label.AutoSize = true;
-        label.Location = new Point(0, 0);
+        label.Location = new Point(-1, 0);
         label.Name = "label";
         label.Size = new Size(33, 19);
         label.TabIndex = 2;
         label.Text = "0/0";
+        // 
+        // timer_fall
+        // 
+        timer_fall.Interval = 20;
+        timer_fall.Tick += timer_fall_Tick;
         // 
         // Form1
         // 
@@ -103,6 +103,6 @@ partial class Form1
     private Button button_start;
     private PictureBox pictureBox_plate;
     private Panel panel_game;
-    private System.Windows.Forms.Timer timer;
+    private System.Windows.Forms.Timer timer_fall;
     private Label label;
 }
