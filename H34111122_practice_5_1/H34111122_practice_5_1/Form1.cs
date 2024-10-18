@@ -2,12 +2,19 @@ namespace H34111122_practice_5_1;
 
 public partial class Form1 : Form
 {
-    int step = 15;
+    // 盤子移動速度
+    static int nornal = 15;
+    // 盤子加速速度
+    static int super = 30;
+    // 水果掉落速度
+    static int speed = 4;
+    // 畫面最多水果數量
+    static int size = 5;
+
+    int step = nornal;
     int catch_count = 0;
     int miss_count = 0;
     Image picture;
-    int speed = 4;
-    static int size = 5;
     PictureBox[] fruit = new PictureBox[Form1.size];
     Random random = new Random();
     bool left, right;
@@ -66,7 +73,7 @@ public partial class Form1 : Form
                 right = true;
                 break;
             case Keys.ShiftKey:
-                step = 20;
+                step = super;
                 break;
         }
     }
@@ -84,7 +91,7 @@ public partial class Form1 : Form
                 right = false;
                 break;
             case Keys.ShiftKey:
-                step = 10;
+                step = nornal;
                 break;
         }
     }
