@@ -12,7 +12,7 @@
             size = Program.Game.size * 2 / 3;
 
             currentHealth = MaxHealth = 3000;
-            attack = 500;
+            attack = 700;
             defense = 200;
 
             pb.BackColor = Color.Yellow;
@@ -29,8 +29,8 @@
         public override void reset()
         {
             base.reset();
-            currentHealth = MaxHealth = 1500;
-            attack = 500;
+            currentHealth = MaxHealth = 3000;
+            attack = 700;
             defense = 200;
             pb.Text = currentHealth.ToString();
         }

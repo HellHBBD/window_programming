@@ -115,7 +115,7 @@ public partial class Form1 : Form
         foreach (var item in character)
         {
             item.currentHealth -= item.damage;
-            if (item.currentHealth <= 0)
+            if (item.pb.BackColor == Color.Gray && item.currentHealth <= 0)
             {
                 int indexX = (item.pb.Left - Program.Game.xstart) / size;
                 int indexY = (item.pb.Top - Program.Game.ystart) / size;
@@ -129,7 +129,7 @@ public partial class Form1 : Form
                 item.show();
 
             }
-            if (item.currentCD == 0)
+            if (item.pb.BackColor == Color.Gray && item.currentCD == 0)
             {
                 item.pb.BackColor = Color.Green;
             }
