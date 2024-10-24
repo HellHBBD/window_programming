@@ -30,7 +30,8 @@
             pb.MouseDown += new MouseEventHandler(pb_MouseDown);
             pb.MouseMove += new MouseEventHandler(pb_MouseMove);
             pb.MouseUp += new MouseEventHandler(pb_MouseUp);
-            pb.MouseClick += new MouseEventHandler(pb_MouseClick);
+            pb.MouseHover += new EventHandler(pb_MouseHover);
+            /*pb.MouseClick += new MouseEventHandler(pb_MouseClick);*/
 
             /*status = Status.unplace;*/
         }
@@ -83,11 +84,12 @@
             }
         }
 
-        public void pb_MouseClick(object sender, MouseEventArgs e)
+        public void pb_MouseHover(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            Button pb = (Button)sender;
+            if (pb.BackColor != Color.White)
             {
-                MessageBox.Show("right click");
+                Program.Game.label_info.Text = pb.Text;
             }
         }
 
@@ -116,6 +118,10 @@
                 Program.Game.timer_move.Stop();
                 damage = enemy.attack - defense;
                 pb.Text = name + "\n" + currentHealth + "/" + MaxHealth + "\n" + currentCD;
+            }
+            else
+            {
+                Program.Game.timer_move.Start();
             }
         }
 

@@ -170,7 +170,7 @@ partial class Form1
         // label_info
         // 
         label_info.AutoSize = true;
-        label_info.Location = new Point(694, 24);
+        label_info.Location = new Point(950, 24);
         label_info.Name = "label_info";
         label_info.Size = new Size(0, 19);
         label_info.TabIndex = 2;
@@ -265,7 +265,7 @@ partial class Form1
     private System.Windows.Forms.Timer timer1;
     private Label label_money;
     private Label label_health_remain;
-    private Label label_info;
+    public Label label_info;
     public Label label1;
     private Label label_msg;
     public System.Windows.Forms.Timer timer_move;
