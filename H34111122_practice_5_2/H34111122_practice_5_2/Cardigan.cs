@@ -5,8 +5,15 @@
         public Cardigan(int index)
         : base(index)
         {
+            reset();
+        }
+
+        public override void reset()
+        {
+            base.reset();
             name = "Cardigan";
             MaxHealth = currentHealth = 2130;
+            MaxCD = currentCD = 20;
             attack = 305;
             defense = 475;
             cost = 18;

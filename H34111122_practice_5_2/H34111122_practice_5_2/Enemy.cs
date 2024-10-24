@@ -25,5 +25,14 @@
         {
             pb.Left += 3;
         }
+
+        public override void reset()
+        {
+            base.reset();
+            currentHealth = MaxHealth = 1500;
+            attack = 500;
+            defense = 200;
+            pb.Text = currentHealth.ToString();
+        }
     }
 }

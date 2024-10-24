@@ -1,20 +1,21 @@
 ﻿namespace H34111122_practice_5_2
 {
-    public enum Status
-    {
-        unplace, cool, skill
-    }
+    /*public enum Status*/
+    /*{*/
+    /*    unplace, cool, skill*/
+    /*}*/
 
     internal class MainCharacter : Character
     {
         bool drag = false;
         int xrecord, yrecord;
+        bool rightClick = false;
 
         public string name;
         public int cost;
         public int MaxCD;
         public int currentCD;
-        public Status status;
+        /*public Status status;*/
 
         public MainCharacter(int index)
         : base()
@@ -31,12 +32,12 @@
             pb.MouseUp += new MouseEventHandler(pb_MouseUp);
             pb.MouseClick += new MouseEventHandler(pb_MouseClick);
 
-            status = Status.unplace;
+            /*status = Status.unplace;*/
         }
 
         public void pb_MouseMove(object sender, MouseEventArgs e)
         {
-            if (status == Status.unplace && drag)
+            if (pb.BackColor == Color.White && drag)
             {
                 pb.Left += e.X - xrecord;
                 pb.Top += e.Y - yrecord;
@@ -45,18 +46,24 @@
 
         public void pb_MouseUp(object sender, MouseEventArgs e)
         {
+            if (rightClick && e.Button == MouseButtons.Right)
+            {
+                rightClick = false;
+                reset();
+            }
             drag = false;
             int mouseX = pb.Left + e.X - xrecord + size / 2;
             int mouseY = pb.Top + e.Y - yrecord + size / 2;
             int indexX = (mouseX - Program.Game.xstart) / size;
             int indexY = (mouseY - Program.Game.ystart) / size;
-            if (status == Status.unplace && indexX >= 0 && indexX <= 10 && indexY >= 0 && indexY <= 2 && Program.Game.occupy[indexY, indexX] == false)
+            if (pb.BackColor == Color.White && indexX >= 0 && indexX <= 10 && indexY >= 0 && indexY <= 2 && Program.Game.occupy[indexY, indexX] == false)
             {
                 pb.Left = Program.Game.xstart + indexX * size;
                 pb.Top = Program.Game.ystart + indexY * size;
-                status = Status.cool;
+                pb.Text = name + "\n" + currentHealth + "/" + MaxHealth + "\n" + currentCD;
+                pb.BackColor = Color.Gray;
             }
-            else if (status == Status.unplace)
+            else if (pb.BackColor == Color.White)
             {
                 pb.Location = new Point(x, y);
             }
@@ -64,11 +71,15 @@
 
         public void pb_MouseDown(object sender, MouseEventArgs e)
         {
-            if (status == Status.unplace && e.Button == MouseButtons.Left)
+            if (pb.BackColor == Color.White && e.Button == MouseButtons.Left)
             {
                 drag = true;
                 xrecord = e.X;
                 yrecord = e.Y;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                rightClick = true;
             }
         }
 
@@ -76,8 +87,7 @@
         {
             if (e.Button == MouseButtons.Right)
             {
-                pb.Location = new Point(x, y);
-                status = Status.unplace;
+                MessageBox.Show("right click");
             }
         }
 
@@ -91,7 +101,6 @@
             /*if (pb.Bounds.IntersectsWith(enemy.pb.Bounds))*/
             {
                 enemy.damage = attack - enemy.defense;
-                /*enemy.currentHealth -= (attack - enemy.defense);*/
                 enemy.pb.Text = enemy.currentHealth.ToString();
             }
         }
@@ -106,9 +115,14 @@
             {
                 Program.Game.timer_move.Stop();
                 damage = enemy.attack - defense;
-                /*currentHealth -= (enemy.attack - defense);*/
                 pb.Text = name + "\n" + currentHealth + "/" + MaxHealth + "\n" + currentCD;
             }
+        }
+
+        public override void reset()
+        {
+            base.reset();
+            pb.BackColor = Color.White;
         }
     }
 }

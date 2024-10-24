@@ -5,8 +5,15 @@
         public Melantha(int index)
         : base(index)
         {
+            reset();
+        }
+
+        public override void reset()
+        {
+            base.reset();
             name = "Melantha";
             MaxHealth = currentHealth = 2745;
+            MaxCD = currentCD = 40;
             attack = 738;
             defense = 155;
             cost = 15;

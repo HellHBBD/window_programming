@@ -12,11 +12,9 @@
             pb.BringToFront();
         }
 
-        public void reset()
+        public virtual void reset()
         {
-            currentHealth = MaxHealth;
             pb.Location = new Point(x, y);
-            pb.Text = currentHealth.ToString();
         }
     }
 }
