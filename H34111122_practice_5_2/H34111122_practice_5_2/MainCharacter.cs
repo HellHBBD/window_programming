@@ -5,11 +5,12 @@
     /*    unplace, cool, skill*/
     /*}*/
 
-    internal class MainCharacter : Character
+    internal abstract class MainCharacter : Character
     {
         bool drag = false;
         int xrecord, yrecord;
         bool rightClick = false;
+        bool leftClick = false;
 
         public string name;
         public int cost;
@@ -31,9 +32,6 @@
             pb.MouseMove += new MouseEventHandler(pb_MouseMove);
             pb.MouseUp += new MouseEventHandler(pb_MouseUp);
             pb.MouseHover += new EventHandler(pb_MouseHover);
-            /*pb.MouseClick += new MouseEventHandler(pb_MouseClick);*/
-
-            /*status = Status.unplace;*/
         }
 
         public void pb_MouseMove(object sender, MouseEventArgs e)
@@ -51,6 +49,11 @@
             {
                 rightClick = false;
                 reset();
+            }
+            else if (leftClick && e.Button == MouseButtons.Left)
+            {
+                leftClick = false;
+                skill();
             }
             drag = false;
             int mouseX = pb.Left + e.X - xrecord + size / 2;
@@ -82,6 +85,10 @@
             {
                 rightClick = true;
             }
+            else if (e.Button == MouseButtons.Left)
+            {
+                leftClick = true;
+            }
         }
 
         public void pb_MouseHover(object sender, EventArgs e)
@@ -95,14 +102,14 @@
 
         public void Attack(Enemy enemy)
         {
-            enemy.damage = 0;
+            /*enemy.damage = 0;*/
             int centerX = enemy.pb.Left + enemy.size / 2;
             int centerY = enemy.pb.Top + enemy.size / 2;
             /*Program.Game.label1.Text = "x:" + centerX + " y:" + centerY;*/
             if ((centerX >= pb.Left - size && centerX <= pb.Right && centerY >= pb.Top && centerY <= pb.Bottom) || (centerX >= pb.Left && centerX <= pb.Right && centerY >= pb.Top - size && centerY <= pb.Bottom + size))
             /*if (pb.Bounds.IntersectsWith(enemy.pb.Bounds))*/
             {
-                enemy.damage = attack - enemy.defense;
+                enemy.damage += (attack - enemy.defense);
                 enemy.pb.Text = enemy.currentHealth.ToString();
             }
         }
@@ -115,13 +122,10 @@
             Program.Game.label1.Text = "x:" + centerX + " y:" + centerY + "\n" + pb.Left + " " + pb.Top;
             if (centerX >= pb.Left && centerX <= pb.Right && centerY >= pb.Top && centerY <= pb.Bottom)
             {
-                Program.Game.timer_move.Stop();
+                Program.Game.label1.Text = name + " touch";
+                enemy.canMove = false;
                 damage = enemy.attack - defense;
                 pb.Text = name + "\n" + currentHealth + "/" + MaxHealth + "\n" + currentCD;
-            }
-            else
-            {
-                Program.Game.timer_move.Start();
             }
         }
 
@@ -130,5 +134,7 @@
             base.reset();
             pb.BackColor = Color.White;
         }
+
+        public abstract void skill();
     }
 }

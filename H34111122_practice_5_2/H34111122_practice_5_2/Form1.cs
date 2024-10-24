@@ -11,7 +11,7 @@ public partial class Form1 : Form
 
     int health = 3;
     int enemyRemain = 10;
-    int money = 30;
+    public int money = 30;
     int tickCount = 0;
 
     int n = 0;
@@ -108,7 +108,6 @@ public partial class Form1 : Form
         }
         enemy = new Enemy();
         timer1.Start();
-        timer_move.Start();
     }
 
     private void second_Tick()
@@ -119,6 +118,15 @@ public partial class Form1 : Form
             if (item.currentHealth <= 0)
             {
                 item.reset();
+            }
+
+            if (item.pb.BackColor == Color.Gray && item.currentCD == 0)
+            {
+                item.pb.BackColor = Color.Green;
+            }
+            else
+            {
+                item.currentCD--;
             }
         }
         enemy.currentHealth -= enemy.damage;
@@ -135,11 +143,22 @@ public partial class Form1 : Form
 
     private void timer1_Tick(object sender, EventArgs e)
     {
+        enemy.damage = 0;
+        enemy.canMove = true;
         foreach (var item in character)
         {
+            if (item.pb.BackColor == Color.White)
+            {
+                continue;
+            }
             item.Defense(enemy);
             item.Attack(enemy);
         }
+        if (enemy.canMove)
+        {
+            enemy.move();
+        }
+
         int centerX = enemy.pb.Left + enemy.size / 2;
         int centerY = enemy.pb.Top + enemy.size / 2;
         PictureBox main = arena[1, 10];
@@ -149,14 +168,12 @@ public partial class Form1 : Form
             if (health == 0)
             {
                 timer1.Stop();
-                timer_move.Stop();
                 panel_game.Visible = false;
                 panel_over.Visible = true;
                 label_msg.Text = "通關失敗";
             }
             enemyRemain--;
             enemy.reset();
-            timer_move.Start();
         }
         label_health_remain.Text = health + "/" + enemyRemain;
         label_money.Text = money.ToString();
@@ -169,7 +186,6 @@ public partial class Form1 : Form
         if (enemyRemain == 0 && health > 0)
         {
             timer1.Stop();
-            timer_move.Stop();
             panel_game.Visible = false;
             panel_over.Visible = true;
             label_msg.Text = "通關成功";

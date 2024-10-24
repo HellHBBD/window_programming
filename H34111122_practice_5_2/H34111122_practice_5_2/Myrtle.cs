@@ -19,5 +19,12 @@
             cost = 10;
             pb.Text = name + "\n" + cost;
         }
+
+        public override void skill()
+        {
+            Program.Game.money += 14;
+            pb.BackColor = Color.Gray;
+            currentCD = MaxCD;
+        }
     }
 }

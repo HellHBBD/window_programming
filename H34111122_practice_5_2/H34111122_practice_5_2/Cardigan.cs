@@ -19,5 +19,12 @@
             cost = 18;
             pb.Text = name + "\n" + cost;
         }
+
+        public override void skill()
+        {
+            currentHealth += (int)(0.4 * MaxHealth);
+            pb.BackColor = Color.Gray;
+            currentCD = MaxCD;
+        }
     }
 }
