@@ -13,7 +13,7 @@
             base.reset();
             name = "Cardigan";
             MaxHealth = currentHealth = 2130;
-            MaxCD = currentCD = 20;
+            MaxCD = currentCD = 20; //TODO 20
             attack = 305;
             defense = 475;
             cost = 18;
@@ -23,8 +23,13 @@
         public override void skill()
         {
             currentHealth += (int)(0.4 * MaxHealth);
+            if (currentHealth > MaxHealth)
+            {
+                currentHealth = MaxHealth;
+            }
             pb.BackColor = Color.Gray;
             currentCD = MaxCD;
+            show();
         }
     }
 }

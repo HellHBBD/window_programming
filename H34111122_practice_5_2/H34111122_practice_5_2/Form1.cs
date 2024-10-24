@@ -16,14 +16,14 @@ public partial class Form1 : Form
 
     int n = 0;
     MainCharacter[] character;
-    Enemy enemy;
+    internal Enemy enemy;
 
     public Form1()
     {
         InitializeComponent();
         agentSelect["Cardigan"] = false;
         agentSelect["Myrtle"] = false;
-        agentSelect["Melantha"] = false;
+        agentSelect["Shaw"] = false;
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 11; j++)
@@ -101,7 +101,7 @@ public partial class Form1 : Form
             character[index] = new Myrtle(index);
             index++;
         }
-        if (agentSelect["Melantha"])
+        if (agentSelect["Shaw"])
         {
             character[index] = new Melantha(index);
             index++;
@@ -117,16 +117,21 @@ public partial class Form1 : Form
             item.currentHealth -= item.damage;
             if (item.currentHealth <= 0)
             {
+                int indexX = (item.pb.Left - Program.Game.xstart) / size;
+                int indexY = (item.pb.Top - Program.Game.ystart) / size;
+                Program.Game.occupy[indexY, indexX] = false;
                 item.reset();
             }
 
-            if (item.pb.BackColor == Color.Gray && item.currentCD == 0)
-            {
-                item.pb.BackColor = Color.Green;
-            }
-            else
+            if (item.pb.BackColor == Color.Gray && item.currentCD > 0)
             {
                 item.currentCD--;
+                item.show();
+
+            }
+            if (item.currentCD == 0)
+            {
+                item.pb.BackColor = Color.Green;
             }
         }
         enemy.currentHealth -= enemy.damage;
@@ -179,7 +184,7 @@ public partial class Form1 : Form
         label_money.Text = money.ToString();
 
         tickCount++;
-        if (tickCount % 50 == 0)
+        if (tickCount % 25 == 0)
         {
             second_Tick();
         }

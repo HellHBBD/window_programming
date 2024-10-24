@@ -11,7 +11,7 @@
             y = Program.Game.ystart + Program.Game.size * 7 / 6;
             size = Program.Game.size * 2 / 3;
 
-            currentHealth = MaxHealth = 1500;
+            currentHealth = MaxHealth = 3000;
             attack = 500;
             defense = 200;
 
@@ -23,7 +23,7 @@
 
         public void move()
         {
-            pb.Left += 3;
+            pb.Left += 2;
         }
 
         public override void reset()

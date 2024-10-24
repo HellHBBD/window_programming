@@ -38,8 +38,6 @@ partial class Form1
         listBox_selected = new ListBox();
         listBox_list = new ListBox();
         panel_game = new Panel();
-        button1 = new Button();
-        label1 = new Label();
         label_info = new Label();
         label_money = new Label();
         label_health_remain = new Label();
@@ -47,7 +45,6 @@ partial class Form1
         label_msg = new Label();
         timer1 = new System.Windows.Forms.Timer(components);
         timer_move = new System.Windows.Forms.Timer(components);
-        button2 = new Button();
         panel_start.SuspendLayout();
         panel_choose.SuspendLayout();
         panel_game.SuspendLayout();
@@ -128,7 +125,7 @@ partial class Form1
         // 
         listBox_list.FormattingEnabled = true;
         listBox_list.ItemHeight = 19;
-        listBox_list.Items.AddRange(new object[] { "Cardigan", "Myrtle", "Melantha" });
+        listBox_list.Items.AddRange(new object[] { "Cardigan", "Myrtle", "Shaw" });
         listBox_list.Location = new Point(167, 148);
         listBox_list.Name = "listBox_list";
         listBox_list.Size = new Size(251, 327);
@@ -136,9 +133,6 @@ partial class Form1
         // 
         // panel_game
         // 
-        panel_game.Controls.Add(button2);
-        panel_game.Controls.Add(button1);
-        panel_game.Controls.Add(label1);
         panel_game.Controls.Add(label_info);
         panel_game.Controls.Add(label_money);
         panel_game.Controls.Add(label_health_remain);
@@ -147,25 +141,6 @@ partial class Form1
         panel_game.Size = new Size(1200, 700);
         panel_game.TabIndex = 0;
         panel_game.Visible = false;
-        // 
-        // button1
-        // 
-        button1.Location = new Point(1010, 516);
-        button1.Name = "button1";
-        button1.Size = new Size(94, 29);
-        button1.TabIndex = 4;
-        button1.Text = "button1";
-        button1.UseVisualStyleBackColor = true;
-        button1.Click += button1_Click;
-        // 
-        // label1
-        // 
-        label1.AutoSize = true;
-        label1.Location = new Point(775, 646);
-        label1.Name = "label1";
-        label1.Size = new Size(51, 19);
-        label1.TabIndex = 3;
-        label1.Text = "label1";
         // 
         // label_info
         // 
@@ -220,16 +195,6 @@ partial class Form1
         timer_move.Interval = 20;
         timer_move.Tick += timer_move_Tick;
         // 
-        // button2
-        // 
-        button2.Location = new Point(1010, 551);
-        button2.Name = "button2";
-        button2.Size = new Size(94, 29);
-        button2.TabIndex = 5;
-        button2.Text = "button2";
-        button2.UseVisualStyleBackColor = true;
-        button2.Click += button2_Click;
-        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
@@ -263,12 +228,9 @@ partial class Form1
     private ListBox listBox_selected;
     private ListBox listBox_list;
     private System.Windows.Forms.Timer timer1;
-    private Label label_money;
+    public Label label_money;
     private Label label_health_remain;
     public Label label_info;
-    public Label label1;
     private Label label_msg;
     public System.Windows.Forms.Timer timer_move;
-    private Button button1;
-    private Button button2;
 }
