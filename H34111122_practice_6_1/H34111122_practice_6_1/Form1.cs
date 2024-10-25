@@ -73,7 +73,7 @@ public partial class Form1 : Form
         {
             pb.Image = null;
         }
-        if (e.Button == MouseButtons.Right)
+        if (e.Button == MouseButtons.Right && pb.Image == null && currentBlock != null)
         {
             pb.Image = currentBlock;
         }
