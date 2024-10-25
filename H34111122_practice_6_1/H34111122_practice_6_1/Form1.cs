@@ -10,9 +10,15 @@ public partial class Form1 : Form
     public Form1()
     {
         InitializeComponent();
+        KeyPreview = true;
 
         dirt = ResizeImage(Image.FromFile("img/dirt.png"), size, size);
+        currentBlock = dirt;
         stone = ResizeImage(Image.FromFile("img/stone.png"), size, size);
+        pictureBox_inventory.Image = ResizeImage(Image.FromFile("img/inventory.png"), 9 * size, size);
+        pictureBox_selected.Image = ResizeImage(Image.FromFile("img/selected.png"), size + 4, size + 4);
+        pictureBox_dirt.Image = ResizeImage(dirt, size - 20, size - 20);
+        pictureBox_stone.Image = ResizeImage(stone, size - 20, size - 20);
 
         for (int i = 0; i < 15; i++)
         {
@@ -73,33 +79,50 @@ public partial class Form1 : Form
         {
             pb.Image = null;
         }
-        if (e.Button == MouseButtons.Right && pb.Image == null && currentBlock != null)
+        if (e.Button == MouseButtons.Right && pb.Image == null)
         {
             pb.Image = currentBlock;
         }
     }
 
-    private void button_blue_Click(object sender, EventArgs e)
-    {
-        button_dirt.Text = "泥土(已選擇)";
-        button_stone.Text = "石頭";
-        currentBlock = dirt;
-    }
+    //private void button_blue_Click(object sender, EventArgs e)
+    //{
+    //    button_dirt.Text = "泥土(已選擇)";
+    //    button_stone.Text = "石頭";
+    //    currentBlock = dirt;
+    //}
 
-    private void button_red_Click(object sender, EventArgs e)
-    {
-        button_dirt.Text = "泥土";
-        button_stone.Text = "石頭(已選擇)";
-        currentBlock = stone;
-    }
+    //private void button_red_Click(object sender, EventArgs e)
+    //{
+    //    button_dirt.Text = "泥土";
+    //    button_stone.Text = "石頭(已選擇)";
+    //    currentBlock = stone;
+    //}
 
     private void button_start_Click(object sender, EventArgs e)
     {
         panel_start.Visible = false;
         panel_game.Visible = true;
-        button_dirt.Visible = true;
-        button_stone.Visible = true;
-        vScrollBar1.Visible = true;
-        hScrollBar1.Visible = true;
+        foreach (Control item in Controls)
+        {
+            if (item.Tag?.ToString() == "ui")
+            {
+                item.Visible = true;
+            }
+        }
+    }
+
+    private void Form1_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.D1)
+        {
+            pictureBox_selected.Left = 258;
+            currentBlock = dirt;
+        }
+        else if (e.KeyCode == Keys.D2)
+        {
+            pictureBox_selected.Left = 298;
+            currentBlock = stone;
+        }
     }
 }
