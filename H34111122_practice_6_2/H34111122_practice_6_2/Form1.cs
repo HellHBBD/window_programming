@@ -1,11 +1,15 @@
 namespace H34111122_practice_6_2;
 
+using System.Text.Json;
+
 public partial class Form1 : Form
 {
     PictureBox[,] pb = new PictureBox[15, 30];
     static int size = 40;
     Image currentBlock, dirt, stone;
     PictureBox steve = new PictureBox();
+
+    bool menuVisible = false;
 
     public Form1()
     {
@@ -31,14 +35,6 @@ public partial class Form1 : Form
                 pb[i, j].Size = new Size(size, size);
                 pb[i, j].BackColor = Color.LightGray;
                 pb[i, j].MouseClick += pb_MouseClick;
-                if (i >= 8 && i <= 9)
-                {
-                    pb[i, j].Image = dirt;
-                }
-                if (i >= 10)
-                {
-                    pb[i, j].Image = stone;
-                }
             }
         }
         panel_game.Controls.Add(steve);
@@ -100,6 +96,29 @@ public partial class Form1 : Form
         pictureBox_stone.Visible = false;
     }
 
+    private void menu_on()
+    {
+        menuVisible = true;
+
+        button_resume.Visible = true;
+        button_resume.BringToFront();
+
+        button_save.Visible = true;
+        button_save.BringToFront();
+
+        button_title.Visible = true;
+        button_title.BringToFront();
+    }
+
+    private void menu_off()
+    {
+        menuVisible = false;
+
+        button_resume.Visible = false;
+        button_save.Visible = false;
+        button_title.Visible = false;
+    }
+
     private void pb_MouseClick(Object sender, MouseEventArgs e)
     {
         PictureBox pb = (PictureBox)sender;
@@ -115,7 +134,25 @@ public partial class Form1 : Form
 
     private void button_start_Click(object sender, EventArgs e)
     {
-        panel_start.Visible = false;
+        for (int i = 0; i < 15; i++)
+        {
+            for (int j = 0; j < 30; j++)
+            {
+                if (i >= 8 && i <= 9)
+                {
+                    pb[i, j].Image = dirt;
+                }
+                else if (i >= 10)
+                {
+                    pb[i, j].Image = stone;
+                }
+                else
+                {
+                    pb[i, j].Image = null;
+                }
+            }
+        }
+        panel_title.Visible = false;
         panel_game.Visible = true;
         panel_game.BringToFront();
 
@@ -134,15 +171,95 @@ public partial class Form1 : Form
             pictureBox_selected.Left = 298;
             currentBlock = stone;
         }
+        else if (e.KeyCode == Keys.Escape && panel_game.Visible)
+        {
+            if (menuVisible)
+            {
+                menu_off();
+            }
+            else
+            {
+                menu_on();
+            }
+        }
     }
 
     private void button_old_Click(object sender, EventArgs e)
     {
+        string jsonString = File.ReadAllText("map.json");
+        List<List<int>> map = JsonSerializer.Deserialize<List<List<int>>>(jsonString);
+        for (int i = 0; i < 15; i++)
+        {
+            for (int j = 0; j < 30; j++)
+            {
+                switch (map[i][j])
+                {
+                    case 0:
+                        pb[i, j].Image = null;
+                        break;
+                    case 1:
+                        pb[i, j].Image = dirt;
+                        break;
+                    case 2:
+                        pb[i, j].Image = stone;
+                        break;
+                }
+            }
+        }
+        panel_title.Visible = false;
+        panel_game.Visible = true;
+        panel_game.BringToFront();
 
+        ui_on();
     }
 
     private void button_leave_Click(object sender, EventArgs e)
     {
         Close();
+    }
+
+    private void button_resume_Click(object sender, EventArgs e)
+    {
+        menu_off();
+    }
+
+    private void button_save_Click(object sender, EventArgs e)
+    {
+        List<List<int>> map = new List<List<int>>();
+        for (int i = 0; i < 15; i++)
+        {
+            List<int> temp = new List<int>();
+            for (int j = 0; j < 30; j++)
+            {
+                if (pb[i, j].Image == null)
+                {
+                    temp.Add(0);
+                }
+                else if (pb[i, j].Image == dirt)
+                {
+                    temp.Add(1);
+                }
+                else if (pb[i, j].Image == stone)
+                {
+                    temp.Add(2);
+                }
+            }
+            map.Add(temp);
+        }
+        string jsonString = JsonSerializer.Serialize(map);
+        File.WriteAllText("map.json", jsonString);
+
+        menu_off();
+        panel_game.Visible = false;
+        panel_title.Visible = true;
+        panel_title.BringToFront();
+    }
+
+    private void button_title_Click(object sender, EventArgs e)
+    {
+        menu_off();
+        panel_game.Visible = false;
+        panel_title.Visible = true;
+        panel_title.BringToFront();
     }
 }
