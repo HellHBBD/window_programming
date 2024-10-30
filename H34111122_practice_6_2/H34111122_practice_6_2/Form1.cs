@@ -110,6 +110,11 @@ public partial class Form1 : Form
     private void menu_on()
     {
         menuVisible = true;
+        panel_game.Enabled = false;
+        hScrollBar1.Enabled = false;
+        vScrollBar1.Enabled = false;
+        pictureBox_dirt.Enabled = false;
+        pictureBox_stone.Enabled = false;
 
         button_resume.Visible = true;
         button_resume.BringToFront();
@@ -124,6 +129,11 @@ public partial class Form1 : Form
     private void menu_off()
     {
         menuVisible = false;
+        panel_game.Enabled = true;
+        hScrollBar1.Enabled = true;
+        vScrollBar1.Enabled = true;
+        pictureBox_dirt.Enabled = true;
+        pictureBox_stone.Enabled = true;
 
         button_resume.Visible = false;
         button_save.Visible = false;
@@ -173,12 +183,12 @@ public partial class Form1 : Form
 
     private void Form1_KeyDown(object sender, KeyEventArgs e)
     {
-        if (e.KeyCode == Keys.D1)
+        if (e.KeyCode == Keys.D1 && menuVisible == false)
         {
             pictureBox_selected.Left = 258;
             currentBlock = dirt;
         }
-        else if (e.KeyCode == Keys.D2)
+        else if (e.KeyCode == Keys.D2 && menuVisible == false)
         {
             pictureBox_selected.Left = 298;
             currentBlock = stone;
@@ -188,12 +198,10 @@ public partial class Form1 : Form
             if (menuVisible)
             {
                 menu_off();
-                panel_game.Enabled = false;
             }
             else
             {
                 menu_on();
-                panel_game.Enabled = true;
             }
         }
     }
@@ -235,7 +243,6 @@ public partial class Form1 : Form
     private void button_resume_Click(object sender, EventArgs e)
     {
         menu_off();
-        panel_game.Enabled = true;
     }
 
     private void button_save_Click(object sender, EventArgs e)
