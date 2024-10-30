@@ -32,6 +32,7 @@ partial class Form1
         hScrollBar1 = new HScrollBar();
         vScrollBar1 = new VScrollBar();
         panel_title = new Panel();
+        pictureBox_minecraft = new PictureBox();
         button_leave = new Button();
         button_old = new Button();
         button_start = new Button();
@@ -43,6 +44,7 @@ partial class Form1
         button_save = new Button();
         button_title = new Button();
         panel_title.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBox_minecraft).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox_selected).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox_inventory).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox_dirt).BeginInit();
@@ -51,6 +53,7 @@ partial class Form1
         // 
         // panel_game
         // 
+        panel_game.AutoScroll = true;
         panel_game.Location = new Point(0, 0);
         panel_game.Name = "panel_game";
         panel_game.Size = new Size(1200, 600);
@@ -75,6 +78,7 @@ partial class Form1
         // 
         // panel_title
         // 
+        panel_title.Controls.Add(pictureBox_minecraft);
         panel_title.Controls.Add(button_leave);
         panel_title.Controls.Add(button_old);
         panel_title.Controls.Add(button_start);
@@ -83,9 +87,17 @@ partial class Form1
         panel_title.Size = new Size(882, 453);
         panel_title.TabIndex = 0;
         // 
+        // pictureBox_minecraft
+        // 
+        pictureBox_minecraft.Location = new Point(310, 47);
+        pictureBox_minecraft.Name = "pictureBox_minecraft";
+        pictureBox_minecraft.Size = new Size(274, 44);
+        pictureBox_minecraft.TabIndex = 3;
+        pictureBox_minecraft.TabStop = false;
+        // 
         // button_leave
         // 
-        button_leave.Location = new Point(403, 285);
+        button_leave.Location = new Point(403, 310);
         button_leave.Name = "button_leave";
         button_leave.Size = new Size(94, 29);
         button_leave.TabIndex = 2;
@@ -95,7 +107,7 @@ partial class Form1
         // 
         // button_old
         // 
-        button_old.Location = new Point(403, 221);
+        button_old.Location = new Point(403, 244);
         button_old.Name = "button_old";
         button_old.Size = new Size(94, 29);
         button_old.TabIndex = 1;
@@ -105,7 +117,7 @@ partial class Form1
         // 
         // button_start
         // 
-        button_start.Location = new Point(403, 150);
+        button_start.Location = new Point(403, 174);
         button_start.Name = "button_start";
         button_start.Size = new Size(94, 29);
         button_start.TabIndex = 0;
@@ -133,18 +145,18 @@ partial class Form1
         // 
         // pictureBox_dirt
         // 
-        pictureBox_dirt.Location = new Point(270, 370);
+        pictureBox_dirt.Location = new Point(265, 365);
         pictureBox_dirt.Name = "pictureBox_dirt";
-        pictureBox_dirt.Size = new Size(20, 20);
+        pictureBox_dirt.Size = new Size(30, 30);
         pictureBox_dirt.TabIndex = 1;
         pictureBox_dirt.TabStop = false;
         pictureBox_dirt.Visible = false;
         // 
         // pictureBox_stone
         // 
-        pictureBox_stone.Location = new Point(310, 370);
+        pictureBox_stone.Location = new Point(305, 365);
         pictureBox_stone.Name = "pictureBox_stone";
-        pictureBox_stone.Size = new Size(20, 20);
+        pictureBox_stone.Size = new Size(30, 30);
         pictureBox_stone.TabIndex = 2;
         pictureBox_stone.TabStop = false;
         pictureBox_stone.Visible = false;
@@ -193,15 +205,16 @@ partial class Form1
         Controls.Add(hScrollBar1);
         Controls.Add(pictureBox_selected);
         Controls.Add(pictureBox_inventory);
-        Controls.Add(button_title);
-        Controls.Add(button_save);
-        Controls.Add(button_resume);
         Controls.Add(panel_game);
+        Controls.Add(button_resume);
+        Controls.Add(button_save);
+        Controls.Add(button_title);
         Controls.Add(panel_title);
         Name = "Form1";
         Text = "Form1";
         KeyDown += Form1_KeyDown;
         panel_title.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)pictureBox_minecraft).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox_selected).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox_inventory).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox_dirt).EndInit();
@@ -225,4 +238,5 @@ partial class Form1
     private Button button_title;
     private Button button_save;
     private Button button_resume;
+    private PictureBox pictureBox_minecraft;
 }

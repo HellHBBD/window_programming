@@ -1,6 +1,8 @@
 namespace H34111122_practice_6_2;
 
 using System.Text.Json;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 public partial class Form1 : Form
 {
@@ -15,15 +17,31 @@ public partial class Form1 : Form
     {
         InitializeComponent();
         KeyPreview = true;
+        panel_title.BackgroundImage = Image.FromFile("img/background.jpg");
+        pictureBox_minecraft.Image = Image.FromFile("img/title.png");
+        pictureBox_minecraft.BackColor = Color.Transparent;
 
         dirt = ResizeImage(Image.FromFile("img/dirt.png"), size, size);
         currentBlock = dirt;
         stone = ResizeImage(Image.FromFile("img/stone.png"), size, size);
         pictureBox_inventory.Image = ResizeImage(Image.FromFile("img/inventory.png"), 9 * size, size);
+
         pictureBox_selected.Image = ResizeImage(Image.FromFile("img/selected.png"), size + 4, size + 4);
         pictureBox_selected.BackColor = Color.Transparent;
-        pictureBox_dirt.Image = ResizeImage(dirt, size - 20, size - 20);
-        pictureBox_stone.Image = ResizeImage(stone, size - 20, size - 20);
+
+        pictureBox_dirt.Image = ResizeImage(dirt, size - 10, size - 10);
+        pictureBox_dirt.MouseClick += (sender, e) =>
+        {
+            pictureBox_selected.Left = 258;
+            currentBlock = dirt;
+        };
+
+        pictureBox_stone.Image = ResizeImage(stone, size - 10, size - 10);
+        pictureBox_stone.MouseClick += (sender, e) =>
+        {
+            pictureBox_selected.Left = 298;
+            currentBlock = stone;
+        };
 
         for (int i = 0; i < 15; i++)
         {
@@ -44,14 +62,16 @@ public partial class Form1 : Form
         steve.BackColor = Color.LightGray;
         steve.BringToFront();
 
-        vScrollBar1.ValueChanged += (sender, e) =>
-        {
-            panel_game.Top = -2 * vScrollBar1.Value;
-        };
-        hScrollBar1.ValueChanged += (sender, e) =>
-        {
-            panel_game.Left = -4 * hScrollBar1.Value;
-        };
+        vScrollBar1.Scroll += vScrollBar_Scroll;
+        hScrollBar1.Scroll += hScrollBar_Scroll;
+        /*vScrollBar1.ValueChanged += (sender, e) =>*/
+        /*{*/
+        /*    panel_game.Top = -2 * vScrollBar1.Value;*/
+        /*};*/
+        /*hScrollBar1.ValueChanged += (sender, e) =>*/
+        /*{*/
+        /*    panel_game.Left = -4 * hScrollBar1.Value;*/
+        /*};*/
     }
 
     private Image ResizeImage(Image image, int width, int height)
@@ -63,6 +83,21 @@ public partial class Form1 : Form
             g.DrawImage(image, 0, 0, width, height);
         }
         return resizedBitmap;
+    }
+
+    public Image SetImageOpacity(Image image, float opacity)
+    {
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.Matrix33 = opacity;
+        ImageAttributes attributes = new ImageAttributes();
+        attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+        Bitmap bmp = new Bitmap(image.Width, image.Height);
+        using (Graphics g = Graphics.FromImage(bmp))
+        {
+            g.DrawImage(image, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, attributes);
+        }
+        return bmp;
     }
 
     private void ui_on()
@@ -154,6 +189,7 @@ public partial class Form1 : Form
         }
         panel_title.Visible = false;
         panel_game.Visible = true;
+        panel_game.Enabled = true;
         panel_game.BringToFront();
 
         ui_on();
@@ -176,10 +212,12 @@ public partial class Form1 : Form
             if (menuVisible)
             {
                 menu_off();
+                panel_game.Enabled = false;
             }
             else
             {
                 menu_on();
+                panel_game.Enabled = true;
             }
         }
     }
@@ -221,6 +259,7 @@ public partial class Form1 : Form
     private void button_resume_Click(object sender, EventArgs e)
     {
         menu_off();
+        panel_game.Enabled = true;
     }
 
     private void button_save_Click(object sender, EventArgs e)
@@ -262,4 +301,39 @@ public partial class Form1 : Form
         panel_title.Visible = true;
         panel_title.BringToFront();
     }
+
+    private float GetScrollPercent(ScrollBar scrollBar)
+    {
+        float scrollPos;
+        if (scrollBar.Maximum == scrollBar.LargeChange)
+            scrollPos = scrollBar.Value;
+        else
+            scrollPos = (float)scrollBar.Value / (scrollBar.Maximum - scrollBar.LargeChange);
+        if (scrollPos > 1)
+            scrollPos = 1;
+        return scrollPos;
+    }
+
+    private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
+    {
+        int len = panel_game.Width - Width + size;
+        if (len < 0)
+        {
+            panel_game.Left = 0;
+            return;
+        }
+        panel_game.Left = (int)(-len * GetScrollPercent(hScrollBar1));
+    }
+
+    private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
+    {
+        int len = panel_game.Height - Height + 3 * size / 2;
+        if (len < 0)
+        {
+            panel_game.Top = 0;
+            return;
+        }
+        panel_game.Top = (int)(-len * GetScrollPercent(vScrollBar1));
+    }
+
 }
