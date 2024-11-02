@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using Newtonsoft.Json;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace H34111122_practice_7_1
 {
@@ -29,8 +20,9 @@ namespace H34111122_practice_7_1
             }
             else if (Path.GetExtension(filename) == ".mytxt")
             {
-                MyText format = new MyText();
-                (textBox.Font, textBox.ForeColor, textBox.Text) = format.load(filename);
+                string json_string = File.ReadAllText(filename, Encoding.UTF8);
+                MyText format = JsonConvert.DeserializeObject<MyText>(json_string);
+                (textBox.Font, textBox.ForeColor, textBox.Text) = format.get();
             }
         }
 
@@ -49,7 +41,8 @@ namespace H34111122_practice_7_1
             else if (Path.GetExtension(filename) == ".mytxt")
             {
                 MyText format = new MyText(textBox.Font, textBox.ForeColor, textBox.Text);
-                format.save(filename);
+                string json_string = JsonConvert.SerializeObject(format);
+                File.WriteAllText(filename, json_string, Encoding.UTF8);
             }
         }
 
@@ -65,7 +58,8 @@ namespace H34111122_practice_7_1
                 else if (Path.GetExtension(filename) == ".mytxt")
                 {
                     MyText format = new MyText(textBox.Font, textBox.ForeColor, textBox.Text);
-                    format.save(filename);
+                    string json_string = JsonConvert.SerializeObject(format);
+                    File.WriteAllText(filename, json_string, Encoding.UTF8);
                 }
             }
         }
