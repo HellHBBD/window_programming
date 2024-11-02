@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace H34111122_practice_7_1
 {
@@ -28,8 +29,8 @@ namespace H34111122_practice_7_1
             }
             else if (Path.GetExtension(filename) == ".mytxt")
             {
-                MyText format = JsonSerializer.Deserialize<MyText>(filename);
-                (textBox.Font, textBox.ForeColor, textBox.Text) = format.get();
+                MyText format = new MyText();
+                (textBox.Font, textBox.ForeColor, textBox.Text) = format.load(filename);
             }
         }
 
@@ -48,7 +49,7 @@ namespace H34111122_practice_7_1
             else if (Path.GetExtension(filename) == ".mytxt")
             {
                 MyText format = new MyText(textBox.Font, textBox.ForeColor, textBox.Text);
-                File.WriteAllText(filename, JsonSerializer.Serialize(format));
+                format.save(filename);
             }
         }
 
@@ -64,8 +65,7 @@ namespace H34111122_practice_7_1
                 else if (Path.GetExtension(filename) == ".mytxt")
                 {
                     MyText format = new MyText(textBox.Font, textBox.ForeColor, textBox.Text);
-                    string json_string = JsonSerializer.Serialize(format);
-                    File.WriteAllText(filename, json_string);
+                    format.save(filename);
                 }
             }
         }
